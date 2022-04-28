@@ -1,0 +1,16 @@
+<section
+  [ngClass]="{ 'should-show': show }"
+  [ngStyle]="{ 'background-image': backgroundImage }"
+>
+  <header>
+    <h2>
+      <ng-content [select]="title"></ng-content>
+    </h2>
+    <h3>
+      <ng-content [select]="subtitle"></ng-content>
+    </h3>
+  </header>
+  <p>
+    <ng-content></ng-content>
+  </p>
+</section>
