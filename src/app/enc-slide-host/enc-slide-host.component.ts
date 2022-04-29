@@ -29,7 +29,7 @@ export class EncSlideHostComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private slides: ActiveSlideService) {}
+  constructor(private slides: ActiveSlideService) { }
 
   get canGoBack() {
     if (this.activeSlide <= 0) return false;
@@ -52,6 +52,24 @@ export class EncSlideHostComponent implements OnInit, OnDestroy {
           this.isFullscreen = false;
         }
       });
+    fromEvent(window, 'keydown')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: KeyboardEvent) => {
+        switch (event.key) {
+          case 'ArrowLeft':
+            this.onBack();
+            break;
+          case 'ArrowRight':
+            this.onNext();
+            break;
+          case 'Enter':
+            this.toggleFullscreen('enter');
+            break;
+          case 'Escape':
+            this.toggleFullscreen('exit');
+            break;
+        }
+      });
   }
   ngOnDestroy(): void {
     this.destroy$.next(void 0);
@@ -68,7 +86,18 @@ export class EncSlideHostComponent implements OnInit, OnDestroy {
     this.setSlide(this.activeSlide + 1);
   }
 
-  async toggleFullscreen() {
+  async toggleFullscreen(action?: 'enter' | 'exit') {
+    if (action === 'exit') {
+      try {
+        this.isFullscreen && document.fullscreenElement && await document.exitFullscreen();
+      } catch { }
+      return;
+    }
+    if (action === 'enter') {
+      try {
+        await this.host.nativeElement.requestFullscreen();
+      } catch { }
+    }
     if (this.isFullscreen && document.fullscreenElement) {
       try {
         await document.exitFullscreen();

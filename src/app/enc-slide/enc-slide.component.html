@@ -1,16 +1,19 @@
 <section
-  [ngClass]="{ 'should-show': show }"
-  [ngStyle]="{ 'background-image': backgroundImage }"
+  [class.show]="show"
+  [style.--enc-slide-bg-image]="'url(' + backgroundImage + ')'"
+  [style.--enc-slide-article-margin]="articleMargin"
 >
-  <header>
-    <h2>
-      <ng-content [select]="title"></ng-content>
-    </h2>
-    <h3>
-      <ng-content [select]="subtitle"></ng-content>
-    </h3>
-  </header>
-  <p>
-    <ng-content></ng-content>
-  </p>
+  <article>
+    <header>
+      <h2>
+        <ng-content select="[title]"></ng-content>
+      </h2>
+      <h3>
+        <ng-content select="[subtitle]"></ng-content>
+      </h3>
+    </header>
+    <section class="content">
+      <ng-content></ng-content>
+    </section>
+  </article>
 </section>

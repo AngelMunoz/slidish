@@ -1,3 +1,49 @@
 <enc-slide-host>
-  <enc-slide *ngFor="let n of [0, 1, 2, 3, 4]" [index]="n"></enc-slide>
+  <enc-slide
+    [index]="0"
+    backgroundImage="/assets/intro.png"
+    kind="Start"
+    text-position="bottom-left"
+  >
+    <span title>Getting Started with Angular.</span>
+    <section subtitle>
+      #HackerHouseMID 2022
+      <br />
+      Angel D. Munoz - Software Developer.
+    </section>
+  </enc-slide>
+  <enc-slide
+    [index]="1"
+    backgroundImage="/assets/header.png"
+    kind="Header"
+    text-position="top-center"
+  >
+    <span title>What is Angular?</span>
+    <section>
+      <h4>Angular is a Single Page Application (SPA) framework.</h4>
+      <ul>
+        <li>Backed by Google&trade;.</li>
+        <li>One of the three most popular frameworks in the industry.</li>
+        <li>Uses components as its core element.</li>
+        <li>Has Object Oriented Programming features.</li>
+      </ul>
+    </section>
+  </enc-slide>
+  <enc-slide
+    [index]="2"
+    backgroundImage="/assets/header.png"
+    kind="Header"
+    text-position="top-center"
+  >
+    <span title>What is Angular?</span>
+    <section>
+      <h4>Angular is a Single Page Application (SPA) framework.</h4>
+      <ul>
+        <li>Backed by Google&trade;.</li>
+        <li>One of the three most popular frameworks in the industry.</li>
+        <li>Uses components as its core element.</li>
+        <li>Has Object Oriented Programming features.</li>
+      </ul>
+    </section>
+  </enc-slide>
 </enc-slide-host>

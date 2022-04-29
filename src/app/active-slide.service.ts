@@ -5,8 +5,6 @@ import { BehaviorSubject } from 'rxjs';
 export class ActiveSlideService {
   activeSlide$ = new BehaviorSubject<number>(0);
 
-  constructor() {}
-
   setActiveSlide(slide: number) {
     this.activeSlide$.next(slide);
   }
