@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ActiveSlideService } from '../active-slide.service';
-
+import type { SlideKind, TextPosition } from '../types';
 @Component({
   selector: 'enc-slide',
   templateUrl: './enc-slide.component.html',
@@ -25,7 +25,7 @@ export class EncSlideComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private readonly slides: ActiveSlideService) { }
+  constructor(private readonly slides: ActiveSlideService) {}
 
   ngOnInit() {
     this.slides.activeSlide$
@@ -47,25 +47,24 @@ export class EncSlideComponent implements OnInit, OnDestroy {
   get articleMargin() {
     // top | right | bottom | left
     switch (this.textPosition) {
-      case "top-center":
+      case 'top-center':
         return '3em auto auto auto';
-      case "top-left":
+      case 'top-left':
         return '3em auto auto 13em';
-      case "top-right":
+      case 'top-right':
         return '3em 13em auto auto';
-      case "bottom-center":
+      case 'bottom-center':
         return 'auto auto 13em auto';
-      case "bottom-left":
+      case 'bottom-left':
         return 'auto auto 13em 13em';
-      case "bottom-right":
+      case 'bottom-right':
         return 'auto 13em 13em auto';
-      case "center-center":
+      case 'center-center':
         return 'auto';
-      case "center-left":
+      case 'center-left':
         return 'auto 13em auto auto';
-      case "center-right":
+      case 'center-right':
         return 'auto auto auto 13em';
     }
   }
-
 }
